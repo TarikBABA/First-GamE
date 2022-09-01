@@ -1,6 +1,6 @@
 <?php
 if (!isset(($_GET)["name"])) {
-    //header('location: game.php');
+    header('location: game.php');
     die("Le paramètre name est manquant");
 }
 if (isset(($_POST)['out'])) {
@@ -17,71 +17,35 @@ $elephantTab = ['0', '1', '2'];
 
 $choice = ["pierre", "feuille", "ciseaux"];
 
-
-// $result = 'equality';
-// $result1 = 'ZzzzZZzz tu perds';
-// $result2 = 'You win';
-
-// if (isset($_GET['submit'])) {
-//     $elephantChoose = $elephantTab[rand(0, 2)];
-//     if ($deevChoose === $elephantChoose) {
-//         return $result;
-//     } elseif ($deevChoose == '0' && $elephantChoose == '1') {
-//         return $result1;
-//     } elseif ($deevChoose == '0' && $elephantChoose == '2') {
-//         return $result2;
-//     } elseif ($deevChoose == '1' && $elephantChoose == '0') {
-//         return $result2;
-//     } elseif ($deevChoose == '1' && $elephantChoose == '2') {
-//         return $result1;
-//     } elseif ($deevChoose == '2' && $elephantChoose == '0') {
-//         return $result1;
-//     } elseif ($deevChoose == '2' && $elephantChoose == '1') {
-//         return $result1;
-//     } else {
-//         echo "Sélectionner une stratégie et appuyer sur Jouer";
-//     }
-//     if ($deevChoose === "3") {
-//         echo 'Humain=Pierre Ordinateur=Pierre Résultat=Égalité
-//                     Humain=Papier Ordinateur=Pierre Résultat=Tu gagnes
-//                     Humain=Ciseaux Ordinateur=Pierre Résultat=Tu perds
-//                     Humain=Pierre Ordinateur=Papier Résultat=Tu perds
-//                     Humain=Papier Ordinateur=Papier Résultat=Égalité
-//                     Humain=Ciseaux Ordinateur=Papier Résultat=Tu gagnes
-//                     Humain=Pierre Ordinateur=Ciseaux Résultat=Tu gagnes
-//                     Humain=Papier Ordinateur=Ciseaux Résultat=Tu perds
-//                     Humain=Ciseaux Ordinateur=Ciseaux Résultat=Égalité';
-//     }
-// }
-
-
-
-
 $win = '';
+$lose = '';
+$equal = '';
 
 function pfc($deev, $elephant)
 {
-    $win = '<img src="./children-640.jpg" alt="">';
+
+    $win = '<img src="./images/children-winners.png" alt="">';
+    $equal = '<img src="./images/virtual-Fair-Play.jpg" alt=""> ';
+    $lose = '<img src="./images/m.png" alt="">';
     if ($deev === $elephant) {
-        return "equality . $win";
+        return " <span>Equality</span> <div class='image'> $equal</div>";
     } elseif ($deev == '0' && $elephant == '1') {
-        return "ZzzzZZzz tu perds ";
+        return "<span>You Are The Winner</span> <div class='image'>$lose</div> ";
     } elseif ($deev == '0' && $elephant == '2') {
-        return "You win";
+        return " <span> I Am The Winner</span> <div class='image'>$win</div>";
     } elseif ($deev == '1' && $elephant == '0') {
-        return "You win";
+        return " <span> I Am The Winner</span> <div class='image'>$win</div>";
     } elseif ($deev == '1' && $elephant == '2') {
-        return "ZzzzZZzz tu perds";
+        return "<span>You Are The Winner</span> <div class='image'>$lose</div>";
     } elseif ($deev == '2' && $elephant == '0') {
-        return "ZzzzZZzz tu perds";
+        return "<span>You Are The Winner</span> <div class='image'>$lose</div>";
     } elseif ($deev == '2' && $elephant == '1') {
-        return "You win";
+        return " <span> I Am The Winner</span> <div class='image'>$win</div>";
     }
 }
 
 $result = '';
 
-// if ($deevChoose === '0' || $deevChoose === '1' || $deevChoose === '2') {
 if (isset($deevChoose)) {
     $elephantChoose = $elephantTab[rand(0, 2)];
     $result = pfc($deevChoose, $elephantChoose);
@@ -96,95 +60,44 @@ if (isset($deevChoose)) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./styles/bootstrap.min.css" />
+    <link rel="stylesheet" href="./styles/styles.css">
     <title>Game</title>
 </head>
 
 <body>
-    <div class="title">
-        <h2>pierre papier ciseaux</h2>
-    </div>
-    <div class="title-underline"></div>
-    <form class="form" method="POST">
+    <div class="center-all">
+        <header>
+            <h2>pierre papier ciseaux</h2>
+            <h1 class="form-label" for="choix">Bienvenue : <?= ($name) ?> </h1>
+        </header>
+        <div class="result">
 
-        <label class="form-label" for="choix">Bienvenue :<?= ucfirst($name) ?> </label>
-
-        <select class="form-input" name="choose" id="choix" required>
-            <option value="-1">Sélectionner</option>
-            <option value="0">pierre</option>
-            <option value="1">feuille</option>
-            <option value="2">ciseaux</option>
-            <option value="3">test</option>
-        </select>
-        <div class="form-btn" style="margin-top:15px">
-            <button type="submit" name="submit" class="btn" id="btn-1">jouer</button>
-            <button class="btn" name="out"> se deconnecter </button>
-        </div>
-    </form>
-
-
-
-
-
-    <pre class="title form-input">
-        <?php if ($result) {
-            echo "Deev={$choice[$deevChoose]} PHP={$choice[$elephantChoose]} Résultat=$result <br>";
-            echo "<br>";
-
-        ?>
-    </pre>
-    <pre class="center">
-                <?php
-                if ($win) {
-                    echo $win;
-                }
+            <?php if ($result) {
+                echo " Tarik a choisi   {$choice[$deevChoose]} --Vs-- {$choice[$elephantChoose]} pour $name <br>  $result";
             }
-                ?>
-    </pre>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <pre>
-            <?php
-            // if ($deevChoose === "test") {
-            //     for ($c = 0; $c < 3; $c++) {
-            //         for ($h = 0; $h < 3; $h++) {
-            //             $r = pfc($h, $c);
-            //             echo "Deev=$choice[$h] elephant=$choice[$c] Result=$r\n";
-            //         }
-            //     }
-            // } else if ($result) {
-            //     echo "Deev={$choice[$deevChoose]} elephant={$choice[$elephantChoose]} Result=$result";
-            // } else {
-            //     echo "Sélectionner une stratégie et appuyer sur Jouer";
-            // }
             ?>
-        </pre>
+        </div>
+        <div class="form-group games">
+            <form class="form game" method="POST">
+                <div class="btn-group form-btns" role="group" aria-label="Basic radio toggle button group" name="choose"
+                    id="choix">
+                    <input type="radio" class="btn-check" id="btnradio1" autocomplete="off" name="choose" value="0">
+                    <label class="btn  text-bg-info" for="btnradio1">Pierre</label>
+                    <input type="radio" class="btn-check" id="btnradio2" autocomplete="off" name="choose" value="1">
+                    <label class="btn  text-bg-secondary" for="btnradio2">Feuille</label>
+                    <input type="radio" class="btn-check" id="btnradio3" autocomplete="off" name="choose" value="2">
+                    <label class="btn  text-bg-danger text-capitalize" for="btnradio3">Ciseaux</label>
+                </div>
+                <div class="form-btn mt-3 text-center ">
+                    <button class="btn text-bg-dark" name="out"> se deconnecter </button>
+                    <button type="submit" name="submit" class="btn text-bg-success" id="btn-1">jouer</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>
