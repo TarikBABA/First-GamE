@@ -4,23 +4,6 @@
     box-sizing: border-box;
 }
 
-:root {
-    --primary: #aaf456;
-    --primary-dark: #3c3799;
-    --grey-light: #f1f5f9;
-    --grey: #a9afb7;
-    --grey-dark: #0f172a;
-    --fluid-width: 90vw;
-    --max-width: 1170px;
-    --black: #222;
-    --white: #fff;
-    --letter-spacing: 2px;
-    --border-radius: 0.15rem;
-    --shadow-light: 0 5px 15px rgba(167, 139, 139, 0.63);
-    --shadow-dark: 0 5px 15px rgb(68, 57, 57);
-    --transition: 0.3s ease-in-out all;
-}
-
 body {
     text-align: center;
     overflow: hidden;
@@ -31,7 +14,9 @@ body {
     display: grid;
     height: 100vh;
     max-width: 1000px;
-    align-content: space-around;
+    grid-gap: 100px;
+    align-content: center;
+    align-items: center;
 }
 
 .logOut {
