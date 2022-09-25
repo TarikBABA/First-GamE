@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./styles/bootstrap.min.css" />
     <link rel="stylesheet" href="./styles/styles.css">
 
-    <title>Acceuil</title>
+    <title>Acceuil Tarik B app</title>
 </head>
 
 <body>
