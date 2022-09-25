@@ -1,4 +1,5 @@
 <?php
+
 if (!isset(($_GET)["name"])) {
     header('location: game.php');
     die("Le paramètre name est manquant");
@@ -54,7 +55,7 @@ if (isset($deevChoose)) {
 
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -70,7 +71,7 @@ if (isset($deevChoose)) {
 <body>
     <div class="center-all">
         <header>
-            <h2>pierre papier ciseaux</h2>
+            <!-- <h2>pierre papier ciseaux</h2> -->
             <h1 class="form-label" for="choix">Bienvenue : <?= ($name) ?> </h1>
         </header>
         <div class="result">
@@ -81,7 +82,7 @@ if (isset($deevChoose)) {
             ?>
         </div>
         <div class="form-group games">
-            <form class="form game" method="POST">
+            <form class="form game" method="POST" action="">
                 <div class="btn-group form-btns" role="group" aria-label="Basic radio toggle button group" name="choose"
                     id="choix">
                     <input type="radio" class="btn-check" id="btnradio1" autocomplete="off" name="choose" value="0">
@@ -92,8 +93,8 @@ if (isset($deevChoose)) {
                     <label class="btn  text-bg-danger text-capitalize" for="btnradio3">Ciseaux</label>
                 </div>
                 <div class="form-btn mt-3 text-center ">
-                    <button class="btn text-bg-dark" name="out"> se deconnecter </button>
-                    <button type="submit" name="submit" class="btn text-bg-success" id="btn-1">jouer</button>
+                    <button class="btn text-bg-dark" name="out"> Se Deconnecter </button>
+                    <button type="submit" name="submit" class="btn text-bg-success" id="btn-1">Jouer</button>
                 </div>
             </form>
         </div>

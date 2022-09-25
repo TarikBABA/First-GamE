@@ -1,11 +1,12 @@
 <?php
+session_start();
+
 if (isset($_POST['cancel'])) {
     header('location: ./index.php');
     return;
 }
 
 $code = password_hash('php123', PASSWORD_DEFAULT);
-$message = "";
 
 
 if (isset($_POST['who']) && isset($_POST['pass'])) {
@@ -13,9 +14,13 @@ if (isset($_POST['who']) && isset($_POST['pass'])) {
     $pass = htmlentities($_POST['pass'], ENT_QUOTES, 'UTF-8');
 
     if ((strlen($login) < 1) || (strlen($pass) < 1)) {
-        $message = "Le Nom d'utilisateur ou votre mot de passe est manquant";
+        $_SESSION["error"] = "Le Nom d'utilisateur ou votre mot de passe est manquant";
+        header("location: login.php");
+        return;
     } else if (!password_verify($_POST['pass'], $code)) {
-        $message = 'Votre mot de passe est faux !';
+        $_SESSION["error"] = 'Votre mot de passe est faux !';
+        header("location: login.php");
+        return;
     } else {
         header('Location: game.php?name=' . urldecode($login));
         exit();
@@ -24,7 +29,7 @@ if (isset($_POST['who']) && isset($_POST['pass'])) {
 ?>
 
 <!DOCTYPE html>
-<html lang="FR-fr">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -42,7 +47,11 @@ if (isset($_POST['who']) && isset($_POST['pass'])) {
     <div class="container text-center mt-5">
         <form class="form" method="POST" action="./login.php">
             <div class="alert-danger mb-5">
-                <?php echo $message
+                <?php if (isset($_SESSION['error'])) {
+                    $message = $_SESSION['error'];
+                    echo "<div class='error' role='alert'>$message</div>";
+                    unset($_SESSION['error']);
+                }
                 ?>
             </div>
             <div class="group-input">
@@ -58,16 +67,11 @@ if (isset($_POST['who']) && isset($_POST['pass'])) {
             </div>
 
             <div class="group-btn">
-                <button name="cancel" class="btn btn-outline-warning mr-2" id="btn-2">Annuler</button>
                 <button type="submit" name="submit" class="btn btn-primary btn-outline-primary"
                     id="btn-1">Valider</button>
+                <button name="cancel" class="btn btn-outline-warning mr-2" id="btn-2">Annuler</button>
             </div>
         </form>
-        <footer>
-            <div class="logOut">
-                <a class="btn btn-outline-dark" href="./index.php">Back To Home</a>
-            </div>
-        </footer>
     </div>
     <!-- Félicitation voici le  Code : php123  -->
 </body>
