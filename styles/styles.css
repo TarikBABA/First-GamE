@@ -31,28 +31,7 @@ body {
     display: grid;
     height: 100vh;
     max-width: 1000px;
-    align-content: space-between;
-}
-
-.games .game {
-    display: flex;
-    flex-direction: column;
-}
-
-
-
-.image {
-    margin: 0 auto;
-    width: 500px;
-    max-height: 400px;
-    display: flex;
-    justify-content: center;
-}
-
-img {
-    object-position: bottom;
-    width: 100%;
-    border-radius: 10px;
+    align-content: space-around;
 }
 
 .logOut {
@@ -64,16 +43,4 @@ img {
 .resultat {
     color: orangered;
     font-size: 1.5rem;
-}
-
-@media screen and (min-width: 768px) {
-    .emoji {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .image {
-        display: none;
-    }
 }

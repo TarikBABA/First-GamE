@@ -17,31 +17,24 @@ $userChoose = $_POST["choose"] ?? '';
 $devTab = ['0', '1', '2'];
 
 $choice = ["pierre", "feuille", "ciseaux"];
-
-$win = '';
-$lose = '';
-$equal = '';
-
 function pfc($dev, $user)
 {
 
-    $win = '<img src="./images/children-winners.png" alt="">';
-    $equal = '<img src="./images/virtual-Fair-Play.jpg" alt=""> ';
-    $lose = '<img src="./images/m.png" alt="">';
+
     if ($user === $dev) {
-        return " <span>Equality</span> <span class='emoji' style='font-size:100px;'>&#129309;</span> <br><div class='image'> $equal</div>";
+        return " <span>Equality</span> <span class='emoji' style='font-size:100px;'>&#129309;</span> <br>";
     } elseif ($user == '0' && $dev == '1') {
-        return "<span>You Are The Winner</span> <span class='emoji' style='font-size:100px;'>&#128533;</span> <br><div class='image'>$lose</div> ";
+        return "<span>You Are The Winner</span> <span class='emoji' style='font-size:100px;'>&#128533;</span> <br> ";
     } elseif ($user == '0' && $dev == '2') {
-        return " <span> I Am The Winner</span> <span class='emoji' style='font-size:100px;'>&#128540;</span> <br><div class='image'>$win</div>";
+        return " <span> I Am The Winner</span> <span class='emoji' style='font-size:100px;'>&#128540;</span> <br>";
     } elseif ($user == '1' && $dev == '0') {
-        return " <span> I Am The Winner</span> <span class='emoji' style='font-size:100px;'>&#129323;</span> <br><div class='image'>$win</div>";
+        return " <span> I Am The Winner</span> <span class='emoji' style='font-size:100px;'>&#129323;</span> <br>";
     } elseif ($user == '1' && $dev == '2') {
-        return "<span>You Are The Winner</span> <span class='emoji' style='font-size:100px;'>&#128544;</span> <br><div class='image'>$lose</div>";
+        return "<span>You Are The Winner</span> <span class='emoji' style='font-size:100px;'>&#128544;</span> <br>";
     } elseif ($user == '2' && $dev == '0') {
-        return "<span>You Are The Winner</span> <span class='emoji' style='font-size:100px;'>&#128562;</span> <br><div class='image'>$lose</div>";
+        return "<span>You Are The Winner</span> <span class='emoji' style='font-size:100px;'>&#128562;</span> <br>";
     } elseif ($user == '2' && $dev == '1') {
-        return " <span> I Am The Winner</span> <span class='emoji' style='font-size:100px;'>&#128513;</span> <br><div class='image'>$win</div>";
+        return " <span> I Am The Winner</span> <span class='emoji' style='font-size:100px;'>&#128513;</span> <br>";
     }
 }
 
@@ -81,18 +74,18 @@ if (isset($userChoose)) {
             }
             ?>
         </div>
-        <div class="form-group games">
-            <form class="form game" method="POST" action="">
+        <div class="form-group">
+            <form class="form" method="POST" action="">
                 <div class="form-btns" role="group" aria-label="Basic radio toggle button group" name="choose"
                     id="choix">
                     <input type="radio" class="btn-check" id="btnradio1" autocomplete="off" name="choose" value="0">
                     <label class="btn  text-bg-info" for="btnradio1">Pierre</label>
                     <input type="radio" class="btn-check" id="btnradio2" autocomplete="off" name="choose" value="1">
-                    <label class="btn  text-bg-secondary" for="btnradio2">Feuille</label>
+                    <label class="btn ml-2 text-bg-secondary" for="btnradio2">Feuille</label>
                     <input type="radio" class="btn-check" id="btnradio3" autocomplete="off" name="choose" value="2">
-                    <label class="btn  text-bg-danger text-capitalize" for="btnradio3">Ciseaux</label>
+                    <label class="btn ml-2 text-bg-danger text-capitalize" for="btnradio3">Ciseaux</label>
                 </div>
-                <div class="form-btn mt-3 text-center ">
+                <div class="form-btn mt-4 text-center ">
                     <button class="btn text-bg-dark" name="out"> Se Deconnecter </button>
                     <button type="submit" name="submit" class="btn text-bg-success" id="btn-1">Jouer</button>
                 </div>
