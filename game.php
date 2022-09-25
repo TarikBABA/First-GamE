@@ -10,11 +10,11 @@ if (isset(($_POST)['out'])) {
 }
 
 
-$name = $_GET["name"] ?? '';
+$name = strtoupper($_GET["name"]) ?? '';
 
-$deevChoose = $_POST["choose"] ?? '';
+$userChoose = $_POST["choose"] ?? '';
 
-$elephantTab = ['0', '1', '2'];
+$devTab = ['0', '1', '2'];
 
 $choice = ["pierre", "feuille", "ciseaux"];
 
@@ -22,34 +22,34 @@ $win = '';
 $lose = '';
 $equal = '';
 
-function pfc($deev, $elephant)
+function pfc($dev, $user)
 {
 
     $win = '<img src="./images/children-winners.png" alt="">';
     $equal = '<img src="./images/virtual-Fair-Play.jpg" alt=""> ';
     $lose = '<img src="./images/m.png" alt="">';
-    if ($deev === $elephant) {
-        return " <span>Equality</span> <div class='image'> $equal</div>";
-    } elseif ($deev == '0' && $elephant == '1') {
-        return "<span>You Are The Winner</span> <div class='image'>$lose</div> ";
-    } elseif ($deev == '0' && $elephant == '2') {
-        return " <span> I Am The Winner</span> <div class='image'>$win</div>";
-    } elseif ($deev == '1' && $elephant == '0') {
-        return " <span> I Am The Winner</span> <div class='image'>$win</div>";
-    } elseif ($deev == '1' && $elephant == '2') {
-        return "<span>You Are The Winner</span> <div class='image'>$lose</div>";
-    } elseif ($deev == '2' && $elephant == '0') {
-        return "<span>You Are The Winner</span> <div class='image'>$lose</div>";
-    } elseif ($deev == '2' && $elephant == '1') {
-        return " <span> I Am The Winner</span> <div class='image'>$win</div>";
+    if ($user === $dev) {
+        return " <span>Equality</span> <span class='emoji' style='font-size:100px;'>&#129309;</span> <br><div class='image'> $equal</div>";
+    } elseif ($user == '0' && $dev == '1') {
+        return "<span>You Are The Winner</span> <span class='emoji' style='font-size:100px;'>&#128533;</span> <br><div class='image'>$lose</div> ";
+    } elseif ($user == '0' && $dev == '2') {
+        return " <span> I Am The Winner</span> <span class='emoji' style='font-size:100px;'>&#128540;</span> <br><div class='image'>$win</div>";
+    } elseif ($user == '1' && $dev == '0') {
+        return " <span> I Am The Winner</span> <span class='emoji' style='font-size:100px;'>&#129323;</span> <br><div class='image'>$win</div>";
+    } elseif ($user == '1' && $dev == '2') {
+        return "<span>You Are The Winner</span> <span class='emoji' style='font-size:100px;'>&#128544;</span> <br><div class='image'>$lose</div>";
+    } elseif ($user == '2' && $dev == '0') {
+        return "<span>You Are The Winner</span> <span class='emoji' style='font-size:100px;'>&#128562;</span> <br><div class='image'>$lose</div>";
+    } elseif ($user == '2' && $dev == '1') {
+        return " <span> I Am The Winner</span> <span class='emoji' style='font-size:100px;'>&#128513;</span> <br><div class='image'>$win</div>";
     }
 }
 
 $result = '';
 
-if (isset($deevChoose)) {
-    $elephantChoose = $elephantTab[rand(0, 2)];
-    $result = pfc($deevChoose, $elephantChoose);
+if (isset($userChoose)) {
+    $devChoose = $devTab[rand(0, 2)];
+    $result = pfc($userChoose, $devChoose);
 }
 
 
@@ -72,18 +72,18 @@ if (isset($deevChoose)) {
     <div class="center-all">
         <header>
             <!-- <h2>pierre papier ciseaux</h2> -->
-            <h1 class="form-label" for="choix">Bienvenue : <?= ($name) ?> </h1>
+            <h1 class="form-label" for="choix">Bienvenue : <?= $name ?> </h1>
         </header>
         <div class="result">
 
             <?php if ($result) {
-                echo " Tarik a choisi   {$choice[$deevChoose]} --Vs-- {$choice[$elephantChoose]} pour $name <br>  $result";
+                echo "<span class='resultat'> $result </span> Tarik a choisi   {$choice[$devChoose]}  <span style='font-size:25px;'>&#127386;</span> {$choice[$userChoose]} pour $name ";
             }
             ?>
         </div>
         <div class="form-group games">
             <form class="form game" method="POST" action="">
-                <div class="btn-group form-btns" role="group" aria-label="Basic radio toggle button group" name="choose"
+                <div class="form-btns" role="group" aria-label="Basic radio toggle button group" name="choose"
                     id="choix">
                     <input type="radio" class="btn-check" id="btnradio1" autocomplete="off" name="choose" value="0">
                     <label class="btn  text-bg-info" for="btnradio1">Pierre</label>
